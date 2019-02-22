@@ -1,0 +1,21 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Dodaj nowy produkt</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nazwa produktu:</label>
+      <input type="text" formControlName="name" placeholder="Produkt" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Podaj ilość:</label>
+      <input formControlName="amount" placeholder="Ilość" name="amount" class="form-control" id="amount">
+    </div>
+
+    <div class="form-group">
+      <label for="unit">Jednostka:</label>
+      <input formControlName="unit" placeholder="Jednostka" name="unit" class="form-control" id="unit">
+    </div>
+
+    <button class="btn btn-success">Zapisz</button>
+  </form>
+</div>

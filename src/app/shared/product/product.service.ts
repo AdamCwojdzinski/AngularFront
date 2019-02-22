@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 
 export interface Product {
   id: number;
@@ -16,7 +14,7 @@ export interface Product {
 
 export class ProductService {
   public API = 'http://localhost:8080';
-  public PRODUCT_API = this.API + '/api/product';
+  public PRODUCT_API = this.API + '/api/product/';
 
   constructor(private http: HttpClient) { }
 
