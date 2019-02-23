@@ -1,29 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Product} from '../../model/product.model';
+import {Observable} from 'rxjs';
 
-export interface Product {
-  id: number;
-  name: string;
-  amount: number;
-  unit: string;
-  }
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductService {
-  public API = 'http://localhost:8080';
-  public PRODUCT_API = this.API + '/api/product/';
+  public PRODUCT_API = '/api';
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
-    return this.http.get<Product>(this.PRODUCT_API);
+  getAll(): Observable<any> {
+    return this.http.get<any[]>(this.PRODUCT_API);
   }
 
   getProductById(id: number) {
-    return this.http.get(this.PRODUCT_API + id);
+    return this.http.get(this.PRODUCT_API + '/' + id);
   }
 
   createProduct(product: Product) {
@@ -31,11 +26,11 @@ export class ProductService {
   }
 
   updateProduct(product: Product) {
-    return this.http.put<Product>(this.PRODUCT_API + product.id, product);
+    return this.http.put<Product>(this.PRODUCT_API + '/' + product.id, product);
   }
 
   remove(id: number) {
-    return this.http.delete(this.PRODUCT_API + id);
+    return this.http.delete(this.PRODUCT_API + '/' + id);
   }
 
 }

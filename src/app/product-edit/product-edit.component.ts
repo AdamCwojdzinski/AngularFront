@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProductService, Product} from '../shared/product/product.service';
-
+import {ProductService} from '../shared/product/product.service';
 import {first} from 'rxjs/operators';
-import {Router,  ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
+import {Product} from '../model/product.model';
 
 @Component({
   selector: 'app-product-edit',
@@ -18,12 +18,12 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
     let productId = window.localStorage.getItem('editProductId');
     if (!productId) {
-      alert('Brak takiego produktu')
+      alert('Brak takiego produktu');
       this.router.navigate(['home']);
       return;
     }
     this.editForm = this.formBuilder.group({
-      id: [''],
+      id: [],
       name: ['', Validators.required],
       amount: ['', Validators.required],
       unit: ['', Validators.required]
@@ -39,12 +39,7 @@ export class ProductEditComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if (data.status === 200) {
-            alert('User updated successfully.');
-            this.router.navigate(['home']);
-          } else {
-            alert();
-          }
+          this.router.navigate(['home']);
         },
         error => {
           alert(error);
