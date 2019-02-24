@@ -16,7 +16,8 @@ export class ProductEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
-    let productId = window.localStorage.getItem('editProductId');
+    //let productId = window.localStorage.getItem('editProductId');
+    let productId = 1;
     if (!productId) {
       alert('Brak takiego produktu');
       this.router.navigate(['home']);
@@ -40,6 +41,7 @@ export class ProductEditComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate(['home']);
+          alert('Zmiany wprowadzone');
         },
         error => {
           alert(error);

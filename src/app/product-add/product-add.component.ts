@@ -27,6 +27,7 @@ export class ProductAddComponent implements OnInit {
     this.productService.createProduct(this.addForm.value)
       .subscribe( data => {
         this.router.navigate(['home']);
+        alert('Dodano nowy produkt');
       });
   }
 
