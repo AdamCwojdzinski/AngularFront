@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Product} from '../../model/product.model';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,10 @@ import {Product} from '../../model/product.model';
 export class ProductService {
   public PRODUCT_API = '/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getAll() {
+  getAll(): Observable<any> {
     return this.http.get(this.PRODUCT_API);
   }
 
@@ -29,5 +31,12 @@ export class ProductService {
 
   remove(id: number) {
     return this.http.delete(this.PRODUCT_API + '/' + id);
+  }
+
+  getProductByName(name: string): Observable<any> {
+    name = name.trim();
+    const options = name ?
+      { params: new HttpParams().set('name', name) } : {};
+    return this.http.get(this.PRODUCT_API + '/search', options);
   }
 }

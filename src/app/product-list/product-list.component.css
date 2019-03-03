@@ -1,5 +1,8 @@
-.user-container {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
+th{
+  text-align: center;
+}
+input{
+  width: 200px;
+  display: inline-block;
+  margin-left: 80px;
 }

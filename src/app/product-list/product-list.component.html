@@ -1,9 +1,10 @@
-<div class="col-md-6 user-container">
+<div class="user-container">
   <h2 style="margin: auto"> Lista zakupów</h2>
   <div class="row">
-      <button class="btn btn-danger" style="width:150px" routerLink="/addProduct"> Dodaj produkt</button>
-      <button class="btn btn-success" (click)="deleteProduct(product)" style="margin-left: 10px; width: 150px;"> Usuń</button>
-      <button class="btn btn-success" routerLink="/editProduct" style="margin-left: 10px; width: 150px;"> Zmień</button>
+    <button class="btn btn-danger" style="width:150px" routerLink="/addProduct"> Dodaj produkt</button>
+    <input class="form-control" type="text" placeholder="Nazwa produktu" #productName>
+    <button class="btn btn-success" (click)="searchProduct(productName.value)" style="margin-left: 20px;">Szukaj</button>
+    <button class="btn btn-primary" (click)="getProduct()" style="margin-left: 20px;">Pokaż listę</button>
   </div>
   <table class="table table-striped">
     <thead>
@@ -15,13 +16,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products.products">
       <td class="hidden">{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.amount}}</td>
       <td>{{product.unit}}</td>
       <td><button class="btn btn-success" (click)="deleteProduct(product)"> Usuń</button>
-        <button class="btn btn-success" routerLink="/editProduct" style="margin-left: 20px;"> Zmień</button></td>
+        <button class="btn btn-success" (click)="editProduct(product)" style="margin-left: 20px;"> Zmień</button></td>
     </tr>
     </tbody>
   </table>
